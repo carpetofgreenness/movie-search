@@ -1,33 +1,45 @@
-$.ajax("http://www.omdbapi.com/?",
-    {
-      t: "sharknado"
-    },
-    function(response) {
-      console.log(response);
-    }
-  );
-
-$.ajax({
-  url: "http://www.omdbapi.com/?",
-  data: {
-    t: "sharknado"
-  },
-  dataType: "json",
-  success: function(response) {
-    console.log(response);
-    $("#movie-title").html(response.Title);
-	$("#poster").attr("src", response.Poster);
-  }
-});
+var value = ""
 
 $( "#searchbar" ).keyup(function() {
-  var value = $( this ).val();
-  $( "p" ).text( value );
+	value = $( this ).val();
+	// console.log(value);
+	if (value.length >= 3) {
+	    $.ajax({
+			url: "http://www.omdbapi.com/?",
+			data: {
+			t: value
+			},
+			dataType: "json",
+			success: function(response) {
+			console.log(response);
+			$("#movie-title").html(response.Title);
+			$("#poster").attr("src", response.Poster);
+			}
+		});
+	}	
+
 });
 
-// $( "input" )
-//   .keyup(function() {
-//     var value = $( this ).val();
-//     $( "p" ).text( value );
-//   })
-//   .keyup();
+// $.ajax("http://www.omdbapi.com/?",
+//     {
+//       t: value
+//     },
+//     function(response) {
+//       console.log(response);
+//     }
+//   );
+
+
+
+// $.ajax({
+//   url: "http://www.omdbapi.com/?",
+//   data: {
+//     t: word
+//   },
+//   dataType: "json",
+//   success: function(response) {
+//     console.log(response);
+//     $("#movie-title").html(response.Title);
+// 	$("#poster").attr("src", response.Poster);
+//   }
+// });
