@@ -12,8 +12,10 @@ $( "#searchbar" ).keyup(function() {
 			dataType: "json",
 			success: function(response) {
 			console.log(response);
-			$("#movie-title").html(response.Title);
+			$("#movie-title").html(response.Title + ", " + response.Year);
+			$("#genre").html(response.Genre);
 			$("#poster").attr("src", response.Poster);
+			$("#plot").html(response.Plot);
 			}
 		});
 	}	
